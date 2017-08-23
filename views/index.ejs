@@ -1,0 +1,25 @@
+<% include ./common/header %>
+<% include ./common/navbar %>
+    <div class="container">
+        <div class="starter-template">
+            <h1>index.htmlです</h1>
+        </div>
+        <table id="foo-table" class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>title</th>
+                    <th>body</th>
+                </tr>
+            </thead>    
+            <tbody>
+                <% for (var i = 0; i < mdata.length; i++) { %>
+                    <tr>
+                        <td><%= mdata[i].title %></td>
+                        <td><%= mdata[i].body %></td>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+        <p><a href="/new/show">Add New</a></p>
+    </div>
+<% include ./common/footer %>

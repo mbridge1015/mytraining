@@ -1,0 +1,15 @@
+<% include ./common/header %>
+<% include ./common/navbar %>
+    <div class="container">
+        <div class="starter-template">
+            <h1>Add New</h1>           
+            <form method="post" action="/new/create">
+                <input type="text" name="title">
+                <input type="text" name="body">
+                <input type="hidden" name="_csrf" value="<%= csrftoken %>">
+                <input type="submit" value="Add!">
+            </form>
+            <p><a href="/index">Go Back</a></p>
+        </div>
+    </div>
+<% include ./common/footer %>
