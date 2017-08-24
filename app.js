@@ -40,6 +40,8 @@ app.use(function(req, res, next) {
 app.use(methodOverride('_method'));                 //express Version4以降
 //ログを使う
 app.use(logger('dev')); //express Version4以降
+//静的ファイルを使う
+app.use('/public', express.static('public'));
 /*------------------------------------------
 ルーティング
 //以下のテストコードで、起動を確認する
