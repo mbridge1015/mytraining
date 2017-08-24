@@ -2,14 +2,14 @@
 <% include ./common/navbar %>
     <div class="container">
         <div class="starter-template">
-            <h1>Add New</h1>           
-            <form method="post" action="/new/create">
-                <input type="text" name="title">
-                <input type="text" name="body">
+            <h1>ブランチを登録します</h1>           
+            <form method="post" action="/gitNew/create">
+                <input type="text" name="title" placeholder="ブランチ名" >
+                <input type="text" name="body" placeholder="内容">
                 <input type="hidden" name="_csrf" value="<%= csrftoken %>">
                 <input type="submit" value="Add!">
             </form>
-            <p><a href="/index">Go Back</a></p>
+            <p><a href="/git">Go Back</a></p>
         </div>
     </div>
 <% include ./common/footer %>

@@ -8,13 +8,13 @@ exports.index = function(req,res){
     というエラーが出て接続に失敗してしまいます。
     */
     //MongoClient.connect("mongodb://"+settings.host+"/"+settings.db,function(err,db){
-    MongoClient.connect("mongodb://localhost/"+conf.mdbname,function(err,db){
+    MongoClient.connect(conf.mdbname,function(err,db){
         if(err){return console.dir(err);}
         console.log("connected to db for find");
-        db.collection("users",function(err,collection){
+        db.collection("mygit",function(err,collection){
             collection.find().toArray(function(err,items){
                 console.dir(items);
-                res.render('./index',{mdata:items});   
+                res.render('./git',{mdata:items});   
             });
             /*streamの画面表示については、別途
             var stream = collection.find().stream();
@@ -28,29 +28,30 @@ exports.index = function(req,res){
         });
     });
 }
-/*WEB API検討中*/
-exports.indexStream = function(req,res){
+
+exports.new = function(req,res){
+    res.render('./gitNew');
+};
+exports.newCreate = function(req,res){
     /*
     現在の MongoDB の初期設定では
     「{ [MongoError: connect ECONNREFUSED] name: 'MongoError', message: 'connect ECONNREFUSED' }」
     というエラーが出て接続に失敗してしまいます。
     */
     //MongoClient.connect("mongodb://"+settings.host+"/"+settings.db,function(err,db){
-    MongoClient.connect("mongodb://localhost/"+conf.mdbname,function(err,db){
+    MongoClient.connect(conf.mdbname,function(err,db){
         if(err){return console.dir(err);}
-        console.log("connected to db for find");
-        db.collection("users",function(err,collection){
-            //stream
-            var mdata = [];
-            var stream = collection.find().stream();
-            stream.on("data",function(item){
-                console.log(item);
-                res.redirect('/index');  
-                //res.send(item);
-            });
-            stream.on("end",function(){
-                console.log("finished.");
+        console.log("connected to db for inserting");
+        db.collection("mygit",function(err,collection){
+            //データを挿入する
+            var docs={
+                title:req.body.title,
+                body:req.body.body
+            };
+            collection.insert(docs,function(err,result){
+                console.dir(result);
             });
         });
     });
-}
+    res.redirect('/git');
+};

@@ -7,8 +7,7 @@ app = express();
 //プロジェクトローカルモジュール読み込み
 var conf = require(__dirname + '/conf');
 var LcTop = require(__dirname + '/router/top');
-var LcIndex = require(__dirname + '/router/index');
-var LcNew = require(__dirname + '/router/new');
+var LcGit = require(__dirname + '/router/git');
 //サードパーティモジュール読み込み
 var logger = require('morgan');                     //ログを使うため（express4以降）事前にnpm install morgan
 var bodyParser = require('body-parser');            //postを使うため（express4以降）事前にnpm install body-parser
@@ -50,10 +49,10 @@ app.get('/', function(req,res){
 );
 ------------------------------------------*/
 app.get('/', LcTop.top);
-app.get('/index', LcIndex.index);
-app.get('/index_Stream', LcIndex.indexStream);//WEB-API検討中
-app.get('/new/show', LcNew.show);
-app.post('/new/create', LcNew.create);
+app.get('/git', LcGit.index);                 //一覧画面遷移
+app.get('/gitNew', LcGit.new);                //登録画面遷移
+app.post('/gitNew/create', LcGit.newCreate);  //登録画面・登録処理
+
 /*sample
 app.get('/', post.index);
 app.get('/posts/:id([0-9]+)', post.show);
