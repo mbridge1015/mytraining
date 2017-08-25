@@ -73,3 +73,16 @@ exports.update = function(req,res){
     });
     res.redirect('/git');
 };
+exports.delete = function(req,res){
+    console.log(req.params.id);
+    MongoClient.connect(conf.mdbname,function(err,db){
+        if(err){return console.dir(err);}
+        console.log("connected to db for delete");
+        db.collection("mygit",function(err,collection){
+            collection.remove({title: req.params.id},function(err,result){
+                console.dir(result);
+            });
+        });
+    });
+    res.redirect('/git');
+};

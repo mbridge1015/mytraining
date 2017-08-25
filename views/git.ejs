@@ -9,6 +9,7 @@
                 <tr>
                     <th>title</th>
                     <th>body</th>
+                    <th>del?</th>
                 </tr>
             </thead>    
             <tbody>
@@ -16,6 +17,12 @@
                     <tr>
                         <td><a href="/gitEdit/<%= mdata[i].title %>">#<%= mdata[i].title %></a></td>
                         <td><%= mdata[i].body %></td>
+                        <td>
+                            <form method="post" action="/git/delete/<%= mdata[i].title %>?_method=DELETE">
+                                <input type="submit" class="btn btn-danger" value="Del">
+                                <input type="hidden" name="_csrf" value="<%= csrftoken %>">
+                            </form>
+                        </td>
                     </tr>
                 <% } %>
             </tbody>

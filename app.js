@@ -51,11 +51,12 @@ app.get('/', function(req,res){
 );
 ------------------------------------------*/
 app.get('/', LcTop.top);
-app.get('/git', LcGit.index);                 //一覧画面遷移
-app.get('/gitNew', LcGit.new);                //登録画面遷移
-app.post('/gitNew/create', LcGit.newCreate);  //登録画面・登録処理
-app.get('/gitEdit/:id', LcGit.edit);          //更新画面に遷移
-app.put('/gitEdit/update/:id', LcGit.update);        //変更処理
+app.get('/git', LcGit.index);                   //一覧画面遷移
+app.get('/gitNew', LcGit.new);                  //登録画面遷移
+app.post('/gitNew/create', LcGit.newCreate);    //登録画面・登録処理
+app.get('/gitEdit/:id', LcGit.edit);            //更新画面に遷移
+app.put('/gitEdit/update/:id', LcGit.update);   //変更処理
+app.delete('/git/delete/:id', LcGit.delete);     //削除処理
 
 /*sample
 app.get('/', post.index);
