@@ -50,24 +50,14 @@ app.get('/', function(req,res){
     }
 );
 ------------------------------------------*/
-app.get('/', LcTop.top);
+app.get('/', LcTop.top);                        //初回画面
+//Gitまわり
 app.get('/git', LcGit.index);                   //一覧画面遷移
 app.get('/gitNew', LcGit.new);                  //登録画面遷移
 app.post('/gitNew/create', LcGit.newCreate);    //登録画面・登録処理
 app.get('/gitEdit/:id', LcGit.edit);            //更新画面に遷移
 app.put('/gitEdit/update/:id', LcGit.update);   //変更処理
-app.delete('/git/delete/:id', LcGit.delete);     //削除処理
-
-/*sample
-app.get('/', post.index);
-app.get('/posts/:id([0-9]+)', post.show);
-app.get('/posts/new', post.new);
-app.post('/posts/create', post.create);
-app.get('/posts/:id/edit', post.edit);
-//put・getを使用する場合は、view側の制御も必要
-app.put('/posts/:id', post.update);
-app.delete('/posts/:id', post.destroy);
-*/
+app.delete('/git/delete/:id', LcGit.delete);    //削除処理
 /*------------------------------------------
 エラー処理
 -------------------------------------------*/

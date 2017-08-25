@@ -61,6 +61,8 @@ exports.update = function(req,res){
     MongoClient.connect(conf.mdbname,function(err,db){
         if(err){return console.dir(err);}
         console.log("connected to db for update");
+        console.log('req.params.id:' + req.params.id);
+        console.log('req.body.body:' + req.body.body);
         db.collection("mygit",function(err,collection){
             collection.update(
                 {title:req.params.id},
