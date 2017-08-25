@@ -2,7 +2,7 @@
 <% include ./common/navbar %>
     <div class="container">
         <div class="starter-template">
-            <h1>Gitの対応内容です</h1>
+            <h1>Gitの対応内容です <input type="button" class="btn btn-primary btn-lg" value="Add New" onClick="location.href='/gitNew'"></h1> 
         </div>
         <table id="foo-table" class="table table-bordered">
             <thead>
@@ -20,6 +20,5 @@
                 <% } %>
             </tbody>
         </table>
-        <p><a href="/gitNew">Add New</a></p>
     </div>
 <% include ./common/footer %>

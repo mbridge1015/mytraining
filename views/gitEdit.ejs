@@ -3,17 +3,17 @@
     <div class="container">
         <div class="starter-template">
             <h1>ブランチを更新します <input type="button" class="btn btn-primary btn-lg" value="Go Back" onClick="location.href='/git'"></h1>           
-            <form class="form-horizontal" method="post" action="/gitEdit/update?_method=PUT">
+            <form class="form-horizontal" method="post" action="/gitEdit/update/<%= mdata.title %>?_method=PUT">
                 <div class="form-group">
                     <label class="col-md-3 control-label" for="inputtext">ブランチ名</label>
                     <div class="col-md-9">
-                        <input type="text" name="title" class="form-control" value="<%= mdata[0].title %>" disabled>
+                        <input type="text" name="title" class="form-control" value="<%= mdata.title %>" disabled>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-md-3 control-label" for="inputtext">内容</label>
                     <div class="col-md-9">
-                        <textarea rows="5" name="body" class="form-control"><%= mdata[0].body %></textarea>
+                        <textarea rows="5" name="body" class="form-control"><%= mdata.body %></textarea>
                     </div>
                 </div>
                 <input type="hidden" name="_csrf" value="<%= csrftoken %>">

@@ -47,12 +47,12 @@ exports.edit = function(req,res){
         if(err){return console.dir(err);}
         console.log("connected to db for find_edit");
         db.collection("mygit",function(err,collection){
-            //req.params.idにStringをかまさないと検索できなかった。
+            //req.params.idにStringをかまさないと"検索"できなかった。
             collection.find({title: String(req.params.id)}).toArray(function(err,items){
             //本来はIdで検索したい
             //collection.find({_id:ObjectId(String(req.params.id))}).toArray(function(err,items){
                 console.dir(items);
-                res.render('./gitEdit',{mdata:items});   
+                res.render('./gitEdit',{mdata:items[0]});   
             });
         });
     });
@@ -63,11 +63,12 @@ exports.update = function(req,res){
         console.log("connected to db for update");
         db.collection("mygit",function(err,collection){
             collection.update(
-                {_id:req.params.id},
-                {$set:{title:req.body.title}}, {body:req.body.body},
+                {title:req.params.id},
+                {$set:{body:req.body.body}},
                 function(err,result){
-                console.dir(result);
-            });
+                    console.dir(result);
+                }
+            );
         });
     });
     res.redirect('/git');
