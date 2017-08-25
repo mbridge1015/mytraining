@@ -2,22 +2,22 @@
 <% include ./common/navbar %>
     <div class="container">
         <div class="starter-template">
-            <h1>ブランチを登録します <input type="button" class="btn btn-primary btn-lg" value="Go Back" onClick="location.href='/git'"></h1>           
-            <form class="form-horizontal" method="post" action="/gitNew/create">
+            <h1>ブランチを更新します <input type="button" class="btn btn-primary btn-lg" value="Go Back" onClick="location.href='/git'"></h1>           
+            <form class="form-horizontal" method="post" action="/gitEdit/update?_method=PUT">
                 <div class="form-group">
                     <label class="col-md-3 control-label" for="inputtext">ブランチ名</label>
                     <div class="col-md-9">
-                        <input type="text" name="title" class="form-control"></input>
+                        <input type="text" name="title" class="form-control" value="<%= mdata[0].title %>" disabled>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-md-3 control-label" for="inputtext">内容</label>
                     <div class="col-md-9">
-                        <textarea rows="5" name="body" class="form-control"></textarea>
+                        <textarea rows="5" name="body" class="form-control"><%= mdata[0].body %></textarea>
                     </div>
                 </div>
                 <input type="hidden" name="_csrf" value="<%= csrftoken %>">
-                <input type="submit" class="btn btn-primary btn-lg" value="Add!">
+                <input type="submit" class="btn btn-primary btn-lg" value="Update!">
             </form>
         </div>
     </div>

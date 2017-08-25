@@ -14,7 +14,7 @@
             <tbody>
                 <% for (var i = 0; i < mdata.length; i++) { %>
                     <tr>
-                        <td><%= mdata[i].title %></td>
+                        <td><a href="/gitEdit/<%= mdata[i].title %>">#<%= mdata[i].title %></a></td>
                         <td><%= mdata[i].body %></td>
                     </tr>
                 <% } %>
