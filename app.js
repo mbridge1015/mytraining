@@ -8,6 +8,7 @@ app = express();
 var conf = require(__dirname + '/conf');
 var LcTop = require(__dirname + '/router/top');
 var LcGit = require(__dirname + '/router/git');
+var LcWeb = require(__dirname + '/router/web');
 //サードパーティモジュール読み込み
 var logger = require('morgan');                     //ログを使うため（express4以降）事前にnpm install morgan
 var bodyParser = require('body-parser');            //postを使うため（express4以降）事前にnpm install body-parser
@@ -51,7 +52,13 @@ app.get('/', function(req,res){
 );
 ------------------------------------------*/
 app.get('/', LcTop.top);                        //初回画面
-//Gitまわり
+//WebBase
+app.get('/webbase', LcWeb.index);                   //WEBサンプル画面
+app.get('/webbase/get', LcWeb.get);                 //Formアクション(get)
+app.post('/webbase/post', LcWeb.post);              //Formアクション(post)
+app.put('/webbase/put', LcWeb.put);                 //Formアクション(get)
+app.delete('/webbase/delete', LcWeb.delete);        //Formアクション(post)
+//Git
 app.get('/git', LcGit.index);                   //一覧画面遷移
 app.get('/gitNew', LcGit.new);                  //登録画面遷移
 app.post('/gitNew/create', LcGit.newCreate);    //登録画面・登録処理

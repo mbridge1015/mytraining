@@ -1,0 +1,127 @@
+<% include ./common/header %>
+<% include ./common/navbar %>
+<div class="container">
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      DEBUG From Server
+    </div>
+    <div class="panel-body">
+      <div class="form-group">
+          <textarea placeholder="サーバーからの値を返します。" rows="3" class="form-control" id="InputTextarea"><%=rdata %></textarea>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      GET
+    </div>
+    <form method="get" action="/webbase/get">
+      <div class="panel-body">
+          <div class="form-group"><input type="text" name="gText" class="form-control" placeholder="test"></div><br>
+          <div class="form-group"><input type="password" name="gPassWord" class="form-control" placeholder="passs"></div>
+          <div class="radio">
+            <label><input type="radio" name="gRadio" value="0" checked="checked"> 無</label>
+            <label><input type="radio" name="gRadio" value="1"> 有</label>
+          </div>
+          <div class="checkbox">
+            <label><input type="checkbox" name="gCheckBox" value="0" checked="checked"> HTML</label>
+            <label><input type="checkbox" name="gCheckBox" value="1"> JavaScript</label>
+            <label><input type="checkbox" name="gCheckBox" value="2"> CSS</label>
+          </div>
+          <div class="form-group">
+            <textarea class="form-control" name="gTextArea" placeholder="textarea"></textarea>
+          </div>
+          <input type="hidden" name="_csrf" value="<%= csrftoken %>">
+          <div class="form-group">
+            <input type="submit" class="btn btn-primary btn-lg" value="Get!">
+          </div>
+      </div>
+    </form>
+  </div>
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      POST!!
+    </div>
+    <form method="post" action="/webbase/post">
+      <div class="panel-body">
+        <div class="form-group"><input type="text" name="pText" class="form-control" placeholder="test"></div><br>
+        <div class="form-group"><input type="password" name="gPassWord" class="form-control" placeholder="passs"></div>
+        <div class="radio">
+          <label><input type="radio" name="pRadio" value="0" checked="checked"> 無</label>
+          <label><input type="radio" name="pRadio" value="1"> 有</label>
+        </div>
+        <div class="checkbox">
+          <label><input type="checkbox" name="pCheckBox" value="0" checked="checked"> HTML</label>
+          <label><input type="checkbox" name="pCheckBox" value="1"> JavaScript</label>
+          <label><input type="checkbox" name="pCheckBox" value="2"> CSS</label>
+        </div>
+        <div class="form-group">
+          <textarea class="form-control" name="pTextArea" placeholder="textarea"></textarea>
+        </div>
+        <input type="hidden" name="_csrf" value="<%= csrftoken %>">
+        <br>
+        <div class="form-group">
+          <input type="submit" class="btn btn-primary btn-lg" value="Post!">
+        </div>
+      </div>
+    </form>
+  </div>
+  <hr>
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      PUT!!
+    </div>
+    <form method="post" action="/webbase/put?_method=PUT">
+      <div class="panel-body">
+        <div class="form-group"><input type="text" name="uText" class="form-control" placeholder="test"></div><br>
+        <div class="form-group"><input type="password" name="uPassWord" class="form-control" placeholder="passs"></div>
+        <div class="radio">
+          <label><input type="radio" name="uRadio" value="0" checked="checked"> 無</label>
+          <label><input type="radio" name="uRadio" value="1"> 有</label>
+        </div>
+        <div class="checkbox">
+          <label><input type="checkbox" name="uCheckBox" value="0" checked="checked"> HTML</label>
+          <label><input type="checkbox" name="uCheckBox" value="1"> JavaScript</label>
+          <label><input type="checkbox" name="uCheckBox" value="2"> CSS</label>
+        </div>
+        <div class="form-group">
+          <textarea class="form-control" name="uTextArea" placeholder="textarea"></textarea>
+        </div>
+        <input type="hidden" name="_csrf" value="<%= csrftoken %>">
+        <br>
+        <div class="form-group">
+          <input type="submit" class="btn btn-primary btn-lg" value="Put!">
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      DELETE!!
+    </div>
+    <form method="post" action="/webbase/delete?_method=DELETE">
+      <div class="panel-body">
+        <div class="form-group"><input type="text" name="dText" class="form-control" placeholder="test"></div><br>
+        <div class="form-group"><input type="password" name="dPassWord" class="form-control" placeholder="passs"></div>
+        <div class="radio">
+          <label><input type="radio" name="dRadio" value="0" checked="checked"> 無</label>
+          <label><input type="radio" name="dRadio" value="1"> 有</label>
+        </div>
+        <div class="checkbox">
+          <label><input type="checkbox" name="dCheckBox" value="0" checked="checked"> HTML</label>
+          <label><input type="checkbox" name="dCheckBox" value="1"> JavaScript</label>
+          <label><input type="checkbox" name="dCheckBox" value="2"> CSS</label>
+        </div>
+        <div class="form-group">
+          <textarea class="form-control" name="dTextArea" placeholder="textarea"></textarea>
+        </div>
+        <input type="hidden" name="_csrf" value="<%= csrftoken %>">
+        <br>
+        <div class="form-group">
+          <input type="submit" class="btn btn-primary btn-lg" value="Delete!">
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<% include ./common/footer %>
