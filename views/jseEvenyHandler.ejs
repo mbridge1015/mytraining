@@ -1,0 +1,67 @@
+<% include ./common/header %>
+<% include ./common/navbar %>
+    <div class="jumbotron">
+      <div class="container">
+        <h1 class="display-3">イベントハンドラー検証</h1>
+        <p> ひたすらイベントを拾っていくだけ</p>
+        <p>ボタンは&lt;button&gt; で定義します。理由はMDNに倣って。</p>
+        <p>&lt;button&gt; 要素のスタイリングは &lt;input&gt; 要素よりもずっと簡単で、複雑なスタイリングも可能です。
+        なぜなら &lt;input はテキストの value 属性のみを受け入れるのに対して、&lt;button&gt; は内部に &lt;em&gt; や &lt;strong&gt;や &lt;img&gt; 等、
+        他の HTML 要素を持つことが可能であり、button 要素自身のみならず、子要素やそれらの擬似要素 (:after、:before) に対するスタイリングも可能だからです 
+        (※ただし空要素である &lt;img&gt; は擬似要素を持つことはできません)。</p>
+      </div>
+    </div>
+    <div class="container">
+      <div class="inner clearfix">
+          <button id="b1">window.onloadでのonclick</button>
+          <button id="b2">addEventListenerでのonclick</button>
+          <button id="b3">jQueryでのonclick(1)</button>
+          <button id="b4">jQueryでのonclick(2)</button>
+      </div>
+      <br>
+      <p>ボタン押下結果が下に出ます。</p>
+      <hr>
+      <div id="msg"></div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+      window.onload = function(){
+         console.log('onload');
+         document.getElementById("b1").onclick = function(){
+           console.log('b1-onclick');
+           document.getElementById("msg").innerHTML = document.getElementById("msg").innerHTML + '<p>window.onloadでのonclick</p>';
+         };
+         //document.getElementById("b1").ondblclick = function(){
+         //  console.log('b1-ondblclick');
+         //  document.getElementById("msg").innerHTML = document.getElementById("msg").innerHTML + '<p>window.onloadでのondblclick</p>';
+         //};
+      };
+      document.addEventListener("DOMContentLoaded", function(){
+         console.log('addEventListener');
+         //document.getElementById("b2").onclick = function(){
+         //  console.log('b2-onclick');
+         //  document.getElementById("msg").innerHTML = document.getElementById("msg").innerHTML + '<p>addEventListenerでのonclick</p>';
+         //};
+         document.getElementById("b2").ondblclick = function(){
+           console.log('b2-ondblclick');
+           document.getElementById("msg").innerHTML = document.getElementById("msg").innerHTML + '<p>addEventListenerでのondblclick</p>';
+         };   
+      });
+      $(function(){
+         console.log('jq-function1');
+         $("#b3").on('click',function(){
+            console.log('b3-onclick'); 
+            //$("#msg").html($("#msg").html() + '<p>$(function()でのonclick</p>');
+            $("#msg").append('<p>$(function()でのonclick</p>');
+         }); 
+      });
+      $(document).ready(function(){
+         console.log('jq-function2');
+         $("#b4").on('dblclick',function(){
+            console.log('b4-onclick'); 
+            //$("#msg").html($("#msg").html() + '<p>$(function()でのonclick</p>');
+            $("#msg").append('<p>$(document).readyでのdblonclick</p>');
+         })
+      });
+    </script>
+<% include ./common/footer %>

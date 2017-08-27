@@ -61,6 +61,7 @@ app.put('/webbase/put', LcWeb.put);             //Formアクション(get)
 app.delete('/webbase/delete', LcWeb.delete);    //Formアクション(post)
 //JSイベント
 app.get('/jseOnload', LcJse.onload);            //JSオンロード確認画面
+app.get('/jseEvenyHandler', LcJse.evenyHandler);            //JSオンロード確認画面
 //Git
 app.get('/git', LcGit.index);                   //一覧画面遷移
 app.get('/gitNew', LcGit.new);                  //登録画面遷移
