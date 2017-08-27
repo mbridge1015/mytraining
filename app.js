@@ -9,6 +9,7 @@ var conf = require(__dirname + '/conf');
 var LcTop = require(__dirname + '/router/top');
 var LcGit = require(__dirname + '/router/git');
 var LcWeb = require(__dirname + '/router/web');
+var LcJse = require(__dirname + '/router/jse');
 //サードパーティモジュール読み込み
 var logger = require('morgan');                     //ログを使うため（express4以降）事前にnpm install morgan
 var bodyParser = require('body-parser');            //postを使うため（express4以降）事前にnpm install body-parser
@@ -53,11 +54,13 @@ app.get('/', function(req,res){
 ------------------------------------------*/
 app.get('/', LcTop.top);                        //初回画面
 //WebBase
-app.get('/webbase', LcWeb.index);                   //WEBサンプル画面
-app.get('/webbase/get', LcWeb.get);                 //Formアクション(get)
-app.post('/webbase/post', LcWeb.post);              //Formアクション(post)
-app.put('/webbase/put', LcWeb.put);                 //Formアクション(get)
-app.delete('/webbase/delete', LcWeb.delete);        //Formアクション(post)
+app.get('/webbase', LcWeb.index);               //Formアクション画面
+app.get('/webbase/get', LcWeb.get);             //Formアクション(get)
+app.post('/webbase/post', LcWeb.post);          //Formアクション(post)
+app.put('/webbase/put', LcWeb.put);             //Formアクション(get)
+app.delete('/webbase/delete', LcWeb.delete);    //Formアクション(post)
+//JSイベント
+app.get('/jseOnload', LcJse.onload);            //JSオンロード確認画面
 //Git
 app.get('/git', LcGit.index);                   //一覧画面遷移
 app.get('/gitNew', LcGit.new);                  //登録画面遷移
@@ -74,5 +77,6 @@ res.send(err.message);
 /*------------------------------------------
 リスナー
 ------------------------------------------*/
-app.listen(conf.port);
-console.log('server starting.....');
+app.listen(conf.port,function () {
+  console.log('server starting.....');
+});

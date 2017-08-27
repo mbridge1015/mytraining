@@ -3,6 +3,7 @@ conf = require('../conf');
 var rdata;
 
 exports.index = function(req,res){
+    console.log(res);
     res.render('./webbase',{rdata:rdata});
 };
 exports.get = function(req,res){
