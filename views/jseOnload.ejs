@@ -1,74 +1,79 @@
 <% include ./common/header %>
 <% include ./common/navbar %>
-<!--
-readyイベントは、DOMが完全にロードされ要素に安全にアクセスできるようになったタイミングで発生します。
-一方、loadイベントは、DOMとすべてのアセットのロードが完了したタイミングで発生します。
-通常のDOM操作では、おそらくloadイベントを使う必要はないでしょう。
-しかし、たとえばアセットのロード完了まで
-ローディングスピナーを表示しておきたいとき、画像のサイズに従ってなにか計算したいときなどは、
-loadイベントの使用が正解、という場合もあります。
-→redeyで。
-readyメソッドを使えば、すべてのDOM要素を確実に安全に操作できるようになった時点でコードが実行されます。とはいえreadyメソッドの使用にどのような意義があるというのでしょうか？
- HTMLドキュメントの<head>セクション内に書かれたJavaScriptコードを実行する場合でも、コードは確かにブラウザーが後続の要素（たとえば<body>要素）のロードを完了したタイミングで実行されるのです。
- JavaScriptを<body>内の最終部分として実行するなら、おそらくready()メソッド内に記述する必要はありません。
- なぜなら、操作・アクセスすることになるすべての要素はすでにロードされているからです。
- オブジェクト操作を行うのであれば、redayは不要説
--->
-<div class="container">
-<h1>イベントハンドラ</h1>
-  <p id="p_before">スクリプトの前</p>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script>
-    //ファイル読み込み時の操作
-    //$(function(){});
-    //$(document).ready(function(){});
-    //$(window).load(function () {});
-    //document.addEventListener("DOMContentLoaded", function(){}
-    //上のどれを使っていても、DOMは読み込んでいる模様
-    //window.onload = function() { alert("処理１"); };は、onload関数に代入するのでだめ
+    <div class="jumbotron">
+      <div class="container">
+        <h1 class="display-3">Loadイベント検証</h1>
+        <h3>※consoleで確認※</h3>
+          readyイベントは、DOMが完全にロードされ要素に安全にアクセスできるようになったタイミングで発生します。
+          一方、loadイベントは、DOMとすべてのアセットのロードが完了したタイミングで発生します。
+          通常のDOM操作では、おそらくloadイベントを使う必要はないでしょう。
+          しかし、たとえばアセットのロード完了まで
+          ローディングスピナーを表示しておきたいとき、画像のサイズに従ってなにか計算したいときなどは、
+          loadイベントの使用が正解、という場合もあります。
+          →redeyで。
+          readyメソッドを使えば、すべてのDOM要素を確実に安全に操作できるようになった時点でコードが実行されます。とはいえreadyメソッドの使用にどのような意義があるというのでしょうか？
+          HTMLドキュメントの<head>セクション内に書かれたJavaScriptコードを実行する場合でも、コードは確かにブラウザーが後続の要素（たとえば<body>要素）のロードを完了したタイミングで実行されるのです。
+          JavaScriptを<body>内の最終部分として実行するなら、おそらくready()メソッド内に記述する必要はありません。
+          なぜなら、操作・アクセスすることになるすべての要素はすでにロードされているからです。
+          オブジェクト操作を行うのであれば、redayは不要。
+      </div>
+    </div>
 
-    //読み込み順カウンターの設置
-    var readCnt = 0;
-    var msg;
-    var docBefore = document.getElementById("p_before");
-    var docAfter = document.getElementById("p_after");
-    console.log(readCnt++ +':b_docBefore:' + docBefore.innerHTML);  //読めている
-    console.log(readCnt++ +':b_docAfter:' + docAfter);    //null
-    $(function(){
-      msg = readCnt++ + ':$(function()';
-      log(msg);
-    });
-    $(document).ready(function(){
-      msg = readCnt++ + ':$(document).ready(function()';
-      log(msg);
-    });
-    $(window).on("load", function(){
-      msg = readCnt++ + ':$(window).on("load", function()';
-      log(msg);
-    });
-    document.addEventListener("DOMContentLoaded", function(){
-      msg = readCnt++ + ':document.addEventListener("DOMContentLoaded", function()';
-      log(msg);   
-    });
-    //あとのほうが実行される
-    window.onload = function() { 
-      msg = readCnt++ + ':window.onload1';
-      log(msg);
-    }
-    window.onload = function() { 
-      msg = readCnt++ + ':window.onload2';
-      log(msg);
-    }
-    console.log(readCnt++ +':a_docBefore:' + docBefore.innerHTML);
-    console.log(readCnt++ +':a_docAfter:' + docAfter);
-    function log(msg){
-      console.log(msg);
-      var docBefore = document.getElementById("p_before");
-      var docAfter = document.getElementById("p_after");
-      console.log(readCnt++ +':f_docBefore:' + docBefore.innerHTML);
-      console.log(readCnt++ +':f_docAfter:' + docAfter.innerHTML);
-    }
-  </script>
-  <p id="p_after">スクリプトの後</p>
-</div>
+    <div class="container">
+      <h2>以下で検証・window.onloadは2回定義</h2>
+      <ul>
+        <li>$(function(){});</li>
+        <li>$(document).ready(function(){});</li>
+        <li>$(window).load(function () {});</li>
+        <li>document.addEventListener("DOMContentLoaded", function(){}</li>
+        <li>window.onload = function() {};</li>
+      </ul>
+      <h2>下記は検証用の表示</h2>
+      <p id="p_before">スクリプトの前</p>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <script>
+        //読み込み順カウンターの設置
+        var readCnt = 0;
+        var msg;
+        var docBefore = document.getElementById("p_before");
+        var docAfter = document.getElementById("p_after");
+        console.log(readCnt++ +':b_docBefore:' + docBefore.innerHTML);  //読めている
+        console.log(readCnt++ +':b_docAfter:' + docAfter);    //null
+        $(function(){
+          msg = readCnt++ + ':$(function()';
+          log(msg);
+        });
+        $(document).ready(function(){
+          msg = readCnt++ + ':$(document).ready(function()';
+          log(msg);
+        });
+        $(window).on("load", function(){
+          msg = readCnt++ + ':$(window).on("load", function()';
+          log(msg);
+        });
+        document.addEventListener("DOMContentLoaded", function(){
+          msg = readCnt++ + ':document.addEventListener("DOMContentLoaded", function()';
+          log(msg);   
+        });
+        //あとのほうが実行される
+        window.onload = function() { 
+          msg = readCnt++ + ':window.onload1';
+          log(msg);
+        }
+        window.onload = function() { 
+          msg = readCnt++ + ':window.onload2';
+          log(msg);
+        }
+        console.log(readCnt++ +':a_docBefore:' + docBefore.innerHTML);
+        console.log(readCnt++ +':a_docAfter:' + docAfter);
+        function log(msg){
+          console.log(msg);
+          var docBefore = document.getElementById("p_before");
+          var docAfter = document.getElementById("p_after");
+          console.log(readCnt++ +':f_docBefore:' + docBefore.innerHTML);
+          console.log(readCnt++ +':f_docAfter:' + docAfter.innerHTML);
+        }
+      </script>
+      <p id="p_after">スクリプトの後</p>
+    </div>
 <% include ./common/footer %>
